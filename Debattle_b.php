@@ -66,7 +66,7 @@
 		//4 database
 		$mysql = new mysqli("localhost", $db_username, $db_password, "webpr2016_islam");
 		
-		$stmt = $mysql->prepare ("INSERT INTO debattle_request (challengee, motion, start_date, end_date, characters) VALUES (?,?,?,?,?)
+		$stmt = $mysql->prepare ("INSERT INTO debattle_request (challengee, motion, position, visibility, start_date, end_date, favcolor, characters) VALUES (?,?,?,?,?,?,?,?)
 		");
 		
 		//echo error
@@ -78,7 +78,7 @@
 		// d - decimanl, float
 		
 		//for each question mark its type with one letter
-		$stmt->bind_param ("ssssi", $_GET["to"], $_GET["motion"], $_GET["bday"], $_GET["bday2"], $_GET["characters"]);
+		$stmt->bind_param ("sssssssi", $_GET["to"], $_GET["motion"], $_GET["position"], $_GET["visibility"], $_GET["bday"], $_GET["bday2"], $_GET["favcolor"], $_GET["characters"]);
 		
 		//save
 		if ($stmt->execute ()){
@@ -144,11 +144,11 @@
 				<label for="position">Position</label>
 				
 					<div class="radio">
-					<label><input type="radio" name="position" Checked> Pro </label>
+					<label><input type="radio" id="position" value="Pro" name="position"> Pro </label>
 					</div>
 					
 					<div class="radio">
-					<label><input type="radio" name="position"> Against  </label>
+					<label><input type="radio" id="position" value="Against" name="position"> Against  </label>
 					</div>
 				</div>			
 			</div>
@@ -158,11 +158,11 @@
 				<label for="visibility">Visibility</label>
 				
 					<div class="radio">
-					<label><input type="radio" name="visibility" Checked> Open </label>
+					<label><input type="radio" id="visibility" value="Open" name="visibility"> Open </label>
 					</div>
 					
 					<div class="radio">
-					<label><input type="radio" name="visibility"> Closed </label>
+					<label><input type="radio" id="visibility" value="Closed" name="visibility"> Closed </label>
 					</div>
 				</div>			
 			</div>
@@ -192,7 +192,7 @@
 			<label for="colour">Choose your favourite colour</label>
 				
 					<div class="color">
-					<input type="color" class="form-control" name="favcolor"> 
+					<input type="color" class="form-control" name="favcolor" id="favcolor"> 
 					</div>	
 				</div>		
 			</div>
