@@ -8,12 +8,12 @@
 	//*******************
 	//To form validation
 	//*******************
-	if(isset($_GET["to"])){ //if there is ?to= in the URL
-		if(empty($_GET["to"])){ //if it is empty
+	if(isset($_GET["challengee"])){ //if there is ?challengee= in the URL
+		if(empty($_GET["challengee"])){ //if it is empty
 			$everything_was_okay = false; //empty
 			echo "Please enter the user you want to challenge! <br>"; // yes it is empty
 		}else{
-			echo "Challengee: ".$_GET["to"]."<br>"; //no it is not empty
+			echo "Challengee: ".$_GET["challengee"]."<br>"; //no it is not empty
 		}
 	}else{
 		$everything_was_okay = false; // do not exist
@@ -78,7 +78,7 @@
 		// d - decimanl, float
 		
 		//for each question mark its type with one letter
-		$stmt->bind_param ("sssssssi", $_GET["to"], $_GET["motion"], $_GET["position"], $_GET["visibility"], $_GET["bday"], $_GET["bday2"], $_GET["favcolor"], $_GET["characters"]);
+		$stmt->bind_param ("sssssssi", $_GET["challengee"], $_GET["motion"], $_GET["position"], $_GET["visibility"], $_GET["start_date"], $_GET["end_date"], $_GET["favcolor"], $_GET["characters"]);
 		
 		//save
 		if ($stmt->execute ()){
@@ -124,8 +124,8 @@
 			<div class="row">
 				<div class="col-md-3">
 					<div class="form-group">
-					<label for="to">User to Challenge</label>
-					<input name="to" id="to" placeholder="@" type="text" class="form-control">
+					<label for="challengee">User to Challenge</label>
+					<input name="challengee" id="challengee" placeholder="@" type="text" class="form-control">
 					</div>
 				</div>
 			</div>
@@ -172,7 +172,7 @@
 				<label for="bday">Start Date</label>
 				
 					<div class="date">
-					<input type="date" class="form-control" name="bday" id="bday"> 
+					<input type="date" class="form-control" name="start_date" id="start_date"> 
 					</div>
 				</div>	
 			</div>
@@ -182,7 +182,7 @@
 			<label for="bday2">End Date</label>
 				
 					<div class="date">
-					<input type="date" class="form-control" name="bday2" id="bday2" > 
+					<input type="date" class="form-control" name="end_date" id="end_date" > 
 					</div>
 			</div>			
 			</div>
